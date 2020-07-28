@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { LOADING_PRODUCTS, SET_PRODUCTS } from '../actions/product.actions';
+import { LOADING_PRODUCTS, SET_PRODUCTS, ERROR_PRODUCTS } from '../actions/product.actions';
 
 export const getProducts = () => (dispatch: any) => {
   dispatch({ type: LOADING_PRODUCTS });
@@ -10,4 +10,5 @@ export const getProducts = () => (dispatch: any) => {
         payload: res.data
       })
     })
+    .catch((err) => dispatch({ type: ERROR_PRODUCTS, payload: err.response }));
 };

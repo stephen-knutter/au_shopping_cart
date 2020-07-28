@@ -9,7 +9,8 @@ export const getCartById = (cartId: string) => (dispatch: any) => {
         type: UPDATE_CART,
         payload: res.data
       })
-    });
+    })
+    .catch((err) => dispatch({ type: ERROR_CART, payload: err.resonse }));
 }
 
 export const createNewCart = (product: Product) => (dispatch: any) => {
