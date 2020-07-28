@@ -9,6 +9,7 @@ import { useDispatch, useSelector} from 'react-redux';
 import { ProductState } from './redux/model/product';
 import { getProducts } from './redux/effects/product.effects';
 import { getCartById } from './redux/effects/cart.effects';
+import { UPDATE_CART } from './redux/actions/cart.actions';
 
 function App() {
 
@@ -26,6 +27,8 @@ function App() {
   const cartId = Cookies.get('cartId');
   if (cartId) {
     dispatch(getCartById(cartId));
+  } else {
+    dispatch({type: UPDATE_CART, payload: {items: [], total: 0}});
   }
 
   return (
