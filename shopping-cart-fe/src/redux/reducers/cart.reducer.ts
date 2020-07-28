@@ -12,17 +12,17 @@ export default function cartReducer(state = initialState, action: CartActions) {
   switch (action.type) {
     case UPDATE_CART:
       const cart: Cart = action.payload;
-      const { _id } = cart;
+      const { _id, total, items, createdAt, updatedAt } = cart;
       if (_id) {
         Cookies.set('cartId', _id, {path: '/'});
       }
       return {
         ...state,
-        _id: cart._id,
-        total: cart.total,
-        items: [...cart.items],
-        createdAt: cart.createdAt,
-        updatedAt: cart.updatedAt
+        _id,
+        total,
+        items,
+        createdAt,
+        updatedAt
       }
     default:
       return state;

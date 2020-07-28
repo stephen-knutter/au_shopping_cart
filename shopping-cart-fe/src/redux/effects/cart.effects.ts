@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { UPDATE_CART } from '../actions/cart.actions';
+import { UPDATE_CART, ERROR_CART } from '../actions/cart.actions';
 import { Product } from '../model/product';
 
 export const getCartById = (cartId: string) => (dispatch: any) => {
@@ -19,7 +19,8 @@ export const createNewCart = (product: Product) => (dispatch: any) => {
         type: UPDATE_CART,
         payload: res.data
       });
-    });
+    })
+    .catch((err) => dispatch({ type: ERROR_CART, payload: err.resonse }));
 }
 
 export const addItemToCart = (product: Product, cartId: string) => (dispatch: any) => {
@@ -29,7 +30,8 @@ export const addItemToCart = (product: Product, cartId: string) => (dispatch: an
         type: UPDATE_CART,
         payload: res.data
       });
-    });
+    })
+    .catch((err) => dispatch({ type: ERROR_CART, payload: err.response }));
 }
 
 export const updateCartItemAdd = (product: Product, cartId: string) => (dispatch: any) => {
@@ -39,7 +41,8 @@ export const updateCartItemAdd = (product: Product, cartId: string) => (dispatch
         type: UPDATE_CART,
         payload: res.data
       });
-    });
+    })
+    .catch((err) => dispatch({ type: ERROR_CART, payload: err.response }));
 }
 
 export const updateCartItemRemove = (product: Product, cartId: string) => (dispatch: any) => {
@@ -49,7 +52,8 @@ export const updateCartItemRemove = (product: Product, cartId: string) => (dispa
         type: UPDATE_CART,
         payload: res.data
       });
-    });
+    })
+    .catch((err) => dispatch({ type: ERROR_CART, payload: err.response }));
 }
 
 export const removeCartItem = (product: Product, cartId: string, count: number) => (dispatch: any) => {
@@ -59,5 +63,6 @@ export const removeCartItem = (product: Product, cartId: string, count: number) 
         type: UPDATE_CART,
         payload: res.data
       });
-    });
+    })
+    .catch((err) => dispatch({ type: ERROR_CART, payload: err.response }));
 } 
