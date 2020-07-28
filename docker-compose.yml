@@ -1,0 +1,47 @@
+version: '3.7'
+
+services:
+
+  cart_frontend:
+    container_name: cart_frontend
+    build: ./shopping-cart-fe/
+    stdin_open: true
+    volumes:
+      - './shopping-cart-fe:/usr/src/app'
+      - '/usr/src/app/node_modules'
+    ports:
+      - 3000:3000
+    depends_on:
+      - cart_api
+    links:
+      - cart_api
+  
+  cart_api:
+    container_name: cart_api
+    build: ./shopping-cart-api/
+    volumes:
+      - './shopping-cart-api:/usr/src/app'
+      - '/usr/src/app/node_modules'
+    ports:
+      - 8080:8080
+    depends_on:
+      - cart_db
+    links:
+      - cart_db
+
+  cart_db:
+    image: mongo:latest
+    ports:
+      - 27017:27017
+    volumes:
+      - mongodb_data_container:/data/db
+
+  cart_seed:
+    build: ./shopping-cart-api/src/db/
+    links:
+      - cart_db
+    depends_on:
+      - cart_db
+
+volumes:
+  mongodb_data_container:
