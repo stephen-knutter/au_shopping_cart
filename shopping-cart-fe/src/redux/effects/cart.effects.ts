@@ -10,7 +10,7 @@ export const getCartById = (cartId: string) => (dispatch: any) => {
         payload: res.data
       })
     })
-    .catch((err) => dispatch({ type: ERROR_CART, payload: err.resonse }));
+    .catch((err) => dispatch({ type: ERROR_CART, payload: err.response }));
 }
 
 export const createNewCart = (product: Product) => (dispatch: any) => {
@@ -21,7 +21,7 @@ export const createNewCart = (product: Product) => (dispatch: any) => {
         payload: res.data
       });
     })
-    .catch((err) => dispatch({ type: ERROR_CART, payload: err.resonse }));
+    .catch((err) => dispatch({ type: ERROR_CART, payload: err.response }));
 }
 
 export const addItemToCart = (product: Product, cartId: string) => (dispatch: any) => {

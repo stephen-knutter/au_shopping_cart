@@ -8,9 +8,9 @@ import { CartModule } from './cart/cart.module';
 
 @Module({
   imports: [
-    CartModule,
-    ProductModule,
-    MongooseModule.forRoot(database.connection, {useFindAndModify: false})
+    // CartModule,
+    // ProductModule,
+    // MongooseModule.forRoot(database.connection, {useFindAndModify: false})
   ],
   controllers: [AppController],
   providers: [AppService],
